@@ -13,17 +13,13 @@ describe("Appointment", () => {
 
     it("renders the customer's first name", () => {
         const customer = {firstName: "Sean"};
-
         render(<Appointment customer={customer}/>);
-
         expect(document.body.textContent).toContain("Sean");
     });
 
     it("renders a different customer's first name", () => {
         const customer = {firstName: "Sophie"};
-
         render(<Appointment customer={customer}/>);
-
         expect(document.body.textContent).toContain("Sophie");
     });
 
