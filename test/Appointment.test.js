@@ -41,10 +41,37 @@ describe("AppointmentsDayView", () => {
         expect(document.querySelector('div#appointmentsDayView')).not.toBeNull();
     });
 
-    it('renders an ol element to display appointments', () => {
+    it('renders an ol to display appointments', () => {
         const component = <AppointmentsDayView appointments={[]}/>;
         render(component);
         expect(document.querySelector("ol")).not.toBeNull();
+    });
+
+    it('renders an li for each appointment', () => {
+        const today = new Date();
+        const twoAppointments = [
+            {startsAt: today.setHours(12, 0),},
+            {startsAt: today.setHours(13, 0),}
+        ];
+
+        render(<AppointmentsDayView appointments={twoAppointments}/>);
+
+        const listItems = document.querySelectorAll("ol > li");
+        expect(listItems.length).toBe(2);
+    });
+
+    it('renders the time for each appointment', () => {
+       const today = new Date();
+        const twoAppointments = [
+            {startsAt: today.setHours(12, 0),},
+            {startsAt: today.setHours(13, 0),}
+        ];
+
+        render(<AppointmentsDayView appointments={twoAppointments}/>);
+
+        const listItems = document.querySelectorAll("ol > li");
+        expect(listItems[0].textContent).toBe("12:00");
+        expect(listItems[1].textContent).toBe("13:00");
     });
 
     const render = component => act(() => ReactDOM.createRoot(container)
