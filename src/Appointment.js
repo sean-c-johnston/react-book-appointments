@@ -8,7 +8,10 @@ export const AppointmentsDayView = ({appointments}) => (
             {appointments.map(appointment => (
                 <li key={appointment.startsAt}>{appointmentTimeOfDay(appointment.startsAt)}</li>))}
         </ol>
-        <p>There are no appointments today.</p>
+
+        {appointments.length === 0 ?
+            <p>There are no appointments today.</p> :
+            <Appointment {...appointments[0]}/>};
     </div>);
 
 const appointmentTimeOfDay = (startsAt) => {

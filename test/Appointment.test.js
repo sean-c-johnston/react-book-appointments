@@ -29,8 +29,9 @@ describe("Appointment", () => {
 
 describe("AppointmentsDayView", () => {
     const today = new Date();
-    const twoAppointments = [{startsAt: today.setHours(12, 0),},
-        {startsAt: today.setHours(13, 0),}];
+    const twoAppointments = [
+        {startsAt: today.setHours(12, 0), customer: {firstName: "Sean"},},
+        {startsAt: today.setHours(13, 0), customer: {firstName: "Sophie"}}];
 
     let container;
 
@@ -43,7 +44,8 @@ describe("AppointmentsDayView", () => {
     it('renders a div with the correct ID', () => {
         const component = <AppointmentsDayView appointments={[]}/>;
         render(component);
-        expect(document.querySelector('div#appointmentsDayView')).not.toBeNull();
+        expect(document.querySelector('div#appointmentsDayView')).not
+            .toBeNull();
     });
 
     it('renders an ol to display appointments', () => {
@@ -69,7 +71,16 @@ describe("AppointmentsDayView", () => {
 
     it('displays a message if there are no appointments today', () => {
         render(<AppointmentsDayView appointments={[]}/>);
-        expect(document.body.textContent).toContain("There are no appointments today.");
+        expect(document.body.textContent)
+            .toContain("There are no appointments today.");
+    });
+
+    it('initially selects the first appointment of the day', () => {
+        render(<AppointmentsDayView appointments={twoAppointments}/>);
+
+        expect(document.body.textContent).toContain("Sean");
+        expect(document.body.textContent)
+            .not.toContain("There are no appointments today.");
     });
 
     const render = component => act(() => ReactDOM.createRoot(container)
