@@ -12,15 +12,15 @@ describe("Appointment", () => {
     })
 
     it("renders the customer's first name", () => {
-        const customer = {firstName: "Sean"};
+        const customer = {firstName: "Ashley"};
         render(<Appointment customer={customer}/>);
-        expect(document.body.textContent).toContain("Sean");
+        expect(document.body.textContent).toContain("Ashley");
     });
 
     it("renders a different customer's first name", () => {
-        const customer = {firstName: "Sophie"};
+        const customer = {firstName: "Jordan"};
         render(<Appointment customer={customer}/>);
-        expect(document.body.textContent).toContain("Sophie");
+        expect(document.body.textContent).toContain("Jordan");
     });
 
     const render = component => act(() => ReactDOM.createRoot(container)
@@ -30,8 +30,8 @@ describe("Appointment", () => {
 describe("AppointmentsDayView", () => {
     const today = new Date();
     const twoAppointments = [{
-        startsAt: today.setHours(12, 0), customer: {firstName: "Sean"},
-    }, {startsAt: today.setHours(13, 0), customer: {firstName: "Sophie"}}];
+        startsAt: today.setHours(12, 0), customer: {firstName: "Ashley"},
+    }, {startsAt: today.setHours(13, 0), customer: {firstName: "Jordan"}}];
 
     let container;
 
@@ -78,7 +78,7 @@ describe("AppointmentsDayView", () => {
     it('initially selects the first appointment of the day', () => {
         render(<AppointmentsDayView appointments={twoAppointments}/>);
 
-        expect(document.body.textContent).toContain("Sean");
+        expect(document.body.textContent).toContain("Ashley");
         expect(document.body.textContent)
             .not.toContain("There are no appointments today.");
     });
@@ -98,7 +98,7 @@ describe("AppointmentsDayView", () => {
 
         act(() => button.click());
 
-        expect(document.body.textContent).toContain("Sophie");
+        expect(document.body.textContent).toContain("Jordan");
     });
 
     const render = component => act(() => ReactDOM.createRoot(container)
