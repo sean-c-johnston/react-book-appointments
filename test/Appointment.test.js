@@ -28,11 +28,16 @@ describe("Appointment", () => {
 });
 
 describe("AppointmentsDayView", () => {
+    const today = new Date();
+    const twoAppointments = [{startsAt: today.setHours(12, 0),},
+        {startsAt: today.setHours(13, 0),}];
+
     let container;
 
     beforeEach(() => {
         container = document.createElement('div');
         document.body.replaceChildren(container);
+
     })
 
     it('renders a div with the correct ID', () => {
@@ -48,12 +53,6 @@ describe("AppointmentsDayView", () => {
     });
 
     it('renders an li for each appointment', () => {
-        const today = new Date();
-        const twoAppointments = [
-            {startsAt: today.setHours(12, 0),},
-            {startsAt: today.setHours(13, 0),}
-        ];
-
         render(<AppointmentsDayView appointments={twoAppointments}/>);
 
         const listItems = document.querySelectorAll("ol > li");
@@ -61,12 +60,6 @@ describe("AppointmentsDayView", () => {
     });
 
     it('renders the time for each appointment', () => {
-       const today = new Date();
-        const twoAppointments = [
-            {startsAt: today.setHours(12, 0),},
-            {startsAt: today.setHours(13, 0),}
-        ];
-
         render(<AppointmentsDayView appointments={twoAppointments}/>);
 
         const listItems = document.querySelectorAll("ol > li");
