@@ -32,23 +32,25 @@ describe("Appointment", () => {
 });
 
 describe("AppointmentsDayView", () => {
-    it('renders a div with the correct ID', () => {
-        const container = document.createElement("div");
+    let container;
+
+    beforeEach(() => {
+        container = document.createElement('div');
         document.body.replaceChildren(container);
+    })
 
+    it('renders a div with the correct ID', () => {
         const component = <AppointmentsDayView appointments={[]}/>;
-        act(() => ReactDOM.createRoot(container).render(component));
-
+        render(component);
         expect(document.querySelector('div#appointmentsDayView')).not.toBeNull();
     });
 
     it('renders an ol element to display appointments', () => {
-        const container = document.createElement("div");
-        document.body.replaceChildren(container);
-
         const component = <AppointmentsDayView appointments={[]}/>;
-        act(() => ReactDOM.createRoot(container).render(component));
-
+        render(component);
         expect(document.querySelector("ol")).not.toBeNull();
     });
+
+    const render = component => act(() => ReactDOM.createRoot(container)
+        .render(component));
 })
