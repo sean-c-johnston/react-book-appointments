@@ -92,7 +92,7 @@ describe("AppointmentsDayView", () => {
         expect(buttons[0].type).toBe("button");
     });
 
-    it.skip('renders a different appointment when selected', () => {
+    it('renders a different appointment when selected', () => {
         render(<AppointmentsDayView appointments={twoAppointments}/>);
         const button = document.querySelectorAll("li > button")[1];
 
