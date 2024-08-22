@@ -1,7 +1,7 @@
 import React, {act} from 'react';
 import ReactDOM from 'react-dom/client';
 
-import {Appointment} from '../src/Appointment'
+import {Appointment, AppointmentsDayView} from '../src/Appointment'
 
 describe("Appointment", () => {
     let container;
@@ -30,3 +30,25 @@ describe("Appointment", () => {
     const render = component => act(() => ReactDOM.createRoot(container)
         .render(component));
 });
+
+describe("AppointmentsDayView", () => {
+    it('renders a div with the correct ID', () => {
+        const container = document.createElement("div");
+        document.body.replaceChildren(container);
+
+        const component = <AppointmentsDayView appointments={[]}/>;
+        act(() => ReactDOM.createRoot(container).render(component));
+
+        expect(document.querySelector('div#appointmentsDayView')).not.toBeNull();
+    });
+
+    it('renders an ol element to display appointments', () => {
+        const container = document.createElement("div");
+        document.body.replaceChildren(container);
+
+        const component = <AppointmentsDayView appointments={[]}/>;
+        act(() => ReactDOM.createRoot(container).render(component));
+
+        expect(document.querySelector("ol")).not.toBeNull();
+    });
+})
