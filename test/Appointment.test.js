@@ -67,6 +67,11 @@ describe("AppointmentsDayView", () => {
         expect(listItems[1].textContent).toBe("13:00");
     });
 
+    it('displays a message if there are no appointments today', () => {
+        render(<AppointmentsDayView appointments={[]}/>);
+        expect(document.body.textContent).toContain("There are no appointments today.");
+    });
+
     const render = component => act(() => ReactDOM.createRoot(container)
         .render(component));
 })
