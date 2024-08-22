@@ -29,9 +29,9 @@ describe("Appointment", () => {
 
 describe("AppointmentsDayView", () => {
     const today = new Date();
-    const twoAppointments = [
-        {startsAt: today.setHours(12, 0), customer: {firstName: "Sean"},},
-        {startsAt: today.setHours(13, 0), customer: {firstName: "Sophie"}}];
+    const twoAppointments = [{
+        startsAt: today.setHours(12, 0), customer: {firstName: "Sean"},
+    }, {startsAt: today.setHours(13, 0), customer: {firstName: "Sophie"}}];
 
     let container;
 
@@ -81,6 +81,24 @@ describe("AppointmentsDayView", () => {
         expect(document.body.textContent).toContain("Sean");
         expect(document.body.textContent)
             .not.toContain("There are no appointments today.");
+    });
+
+    it('has a button in each li', () => {
+        render(<AppointmentsDayView appointments={twoAppointments}/>);
+
+        const buttons = document.querySelectorAll("li > button");
+
+        expect(buttons.length).toBe(2);
+        expect(buttons[0].type).toBe("button");
+    });
+
+    it('renders a different appointment when selected', () => {
+        render(<AppointmentsDayView appointments={twoAppointments}/>);
+        const button = document.querySelectorAll("li > button")[1];
+
+        act(() => button.click());
+
+        expect(document.body.textContent).toContain("Sophie");
     });
 
     const render = component => act(() => ReactDOM.createRoot(container)
