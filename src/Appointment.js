@@ -7,8 +7,8 @@ export const AppointmentsDayView = ({appointments}) => {
 
     return <div id={"appointmentsDayView"}>
         <ol>
-            {appointments.map((appointment, i) => (
-                <li key={appointment.startsAt}>
+            {appointments.map(
+                (appointment, i) => (<li key={appointment.startsAt}>
                     <button type="button"
                             onClick={() => setSelectedAppointment(i)}>
                         {appointmentTimeOfDay(appointment.startsAt)}
@@ -18,8 +18,8 @@ export const AppointmentsDayView = ({appointments}) => {
 
         {appointments.length === 0 ?
             <p>There are no appointments today.</p> :
-            <Appointment {...appointments[selectedAppointment]}/>};
-    </div>;
+            <Appointment {...appointments[selectedAppointment]}/>}
+    </div>
 }
 
 const appointmentTimeOfDay = (startsAt) => {
