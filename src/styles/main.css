@@ -1,3 +1,29 @@
-ol {
-    list-style: none;
+div#appointmentsDayView {
+    background-color: #fff0f0;
+
+    width: 50%;
+    margin: auto;
+    padding: 10px 12px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    /*Button list*/
+    ol {
+        flex: 20;
+        list-style: none;
+        padding-inline-start: 0;
+
+        button {
+            margin: 2px 0;
+        }
+    }
+
+    /* Appointment view */
+    div {
+        flex: 80;
+        padding: 4px 10px;
+        border: 1px black solid;
+    }
 }
