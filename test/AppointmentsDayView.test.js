@@ -4,6 +4,8 @@ import ReactDOM from 'react-dom/client';
 import {Appointment, AppointmentsDayView} from '../src/AppointmentsDayView'
 
 describe("Appointment", () => {
+    const blankCustomer = {firstName: "", lastName: "", email: ""};
+
     let container;
 
     beforeEach(() => {
@@ -22,9 +24,104 @@ describe("Appointment", () => {
         render(<Appointment customer={customer}/>);
         expect(document.body.textContent).toContain("Jordan");
     });
+    
+    it("renders the customer's last name", () => {
+        const customer = {lastName: "Smith"};
+        render(<Appointment customer={customer}/>);
+        expect(document.body.textContent).toContain("Smith");
+    });
 
-    const render = component => act(() => ReactDOM.createRoot(container)
-        .render(component));
+    it("renders the customer's last name", () => {
+        const customer = {lastName: "Smithy"};
+        render(<Appointment customer={customer}/>);
+        expect(document.body.textContent).toContain("Smithy");
+    });
+
+    it("renders the customer's phone number", () => {
+        const customer = {phoneNumber: "+441234567890"};
+        render(<Appointment customer={customer}/>);
+        expect(document.body.textContent).toContain("+441234567890");
+    });
+
+    it("renders another customer's phone number", () => {
+        const customer = {phoneNumber: "+441234567891"};
+        render(<Appointment customer={customer}/>);
+        expect(document.body.textContent).toContain("+441234567891");
+    });
+
+    it('renders a header showing the appointment time', () => {
+        const today = new Date();
+        render(<Appointment customer={blankCustomer} startsAt={today.setHours(11, 0)}/>);
+
+        const header = document.body.querySelector('h1');
+        expect(header).not.toBeNull();
+        expect(header.textContent).toContain("11:00");
+    });
+
+    it('renders a header showing another appointment time', () => {
+        const today = new Date();
+        render(<Appointment customer={blankCustomer} startsAt={today.setHours(16, 0)}/>);
+
+        const header = document.body.querySelector('h1');
+        expect(header).not.toBeNull();
+        expect(header.textContent).toContain("16:00");
+    });
+
+    it('renders the appointment service', () => {
+        render(<Appointment
+            customer={blankCustomer}
+            service="Cut & Beard"
+        />);
+
+        expect(document.body.textContent).toContain("Cut & Beard");
+    });
+
+    it('renders another appointment service', () => {
+        render(<Appointment
+            customer={blankCustomer}
+            service="Blow-Dry"
+        />);
+
+        expect(document.body.textContent).toContain("Blow-Dry");
+    });
+
+    it('renders the stylist', () => {
+        render(<Appointment
+            customer={blankCustomer}
+            stylist="Sean"
+        />);
+
+        expect(document.body.textContent).toContain("Sean");
+    });
+
+    it('renders another stylist', () => {
+        render(<Appointment
+            customer={blankCustomer}
+            stylist="Joe"
+        />);
+
+        expect(document.body.textContent).toContain("Joe");
+    });
+
+    it('renders the appointment notes', () => {
+        render(<Appointment
+            customer={blankCustomer}
+            notes="note 1"
+        />);
+
+        expect(document.body.textContent).toContain("note 1");
+    });
+
+    it('renders different appointment notes', () => {
+        render(<Appointment
+            customer={blankCustomer}
+            notes="note 2"
+        />);
+
+        expect(document.body.textContent).toContain("note 2");
+    });
+
+    const render = component => act(() => ReactDOM.createRoot(container).render(component));
 });
 
 describe("AppointmentsDayView", () => {

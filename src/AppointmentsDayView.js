@@ -1,6 +1,17 @@
 import React, {useState} from 'react';
 
-export const Appointment = ({customer}) => <div>{customer.firstName}</div>;
+export const Appointment = ({customer, startsAt, service, stylist, notes}) =>
+    <div>
+        {startsAt !== undefined && startsAt !== null ?
+            <h1>{appointmentTimeOfDay(startsAt)}</h1> : <></>
+        }
+
+        <p>{stylist}</p>
+        <p>{customer.firstName} {customer.lastName}</p>
+        <p>{customer.phoneNumber}</p>
+        <p>{service}</p>
+        <p>{notes}</p>
+    </div>;
 
 export const AppointmentsDayView = ({appointments}) => {
     const [selectedAppointment, setSelectedAppointment] = useState(0);
