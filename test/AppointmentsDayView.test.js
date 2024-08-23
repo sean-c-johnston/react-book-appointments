@@ -1,8 +1,7 @@
 import React, {act} from 'react';
-import ReactDOM from 'react-dom/client';
 
 import {Appointment, AppointmentsDayView} from '../src/AppointmentsDayView'
-import {initializeReactContainer, container} from "./reactTestExtensions";
+import {initializeReactContainer, render} from "./reactTestExtensions";
 
 describe("Appointment", () => {
     const blankCustomer = {firstName: "", lastName: "", email: ""};
@@ -118,8 +117,6 @@ describe("Appointment", () => {
 
         expect(document.body.textContent).toContain("note 2");
     });
-
-    const render = component => act(() => ReactDOM.createRoot(container).render(component));
 });
 
 describe("AppointmentsDayView", () => {
@@ -191,7 +188,4 @@ describe("AppointmentsDayView", () => {
 
         expect(document.body.textContent).toContain("Jordan");
     });
-
-    const render = component => act(() => ReactDOM.createRoot(container)
-        .render(component));
 })
