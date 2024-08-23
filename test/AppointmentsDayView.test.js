@@ -2,15 +2,13 @@ import React, {act} from 'react';
 import ReactDOM from 'react-dom/client';
 
 import {Appointment, AppointmentsDayView} from '../src/AppointmentsDayView'
+import {initializeReactContainer, container} from "./reactTestExtensions";
 
 describe("Appointment", () => {
     const blankCustomer = {firstName: "", lastName: "", email: ""};
 
-    let container;
-
     beforeEach(() => {
-        container = document.createElement('div');
-        document.body.replaceChildren(container);
+        initializeReactContainer();
     })
 
     it("renders the customer's first name", () => {
@@ -24,7 +22,7 @@ describe("Appointment", () => {
         render(<Appointment customer={customer}/>);
         expect(document.body.textContent).toContain("Jordan");
     });
-    
+
     it("renders the customer's last name", () => {
         const customer = {lastName: "Smith"};
         render(<Appointment customer={customer}/>);
@@ -130,12 +128,8 @@ describe("AppointmentsDayView", () => {
         startsAt: today.setHours(12, 0), customer: {firstName: "Ashley"},
     }, {startsAt: today.setHours(13, 0), customer: {firstName: "Jordan"}}];
 
-    let container;
-
     beforeEach(() => {
-        container = document.createElement('div');
-        document.body.replaceChildren(container);
-
+        initializeReactContainer();
     })
 
     it('renders a div with the correct ID', () => {
