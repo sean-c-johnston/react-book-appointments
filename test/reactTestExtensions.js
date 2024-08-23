@@ -8,5 +8,11 @@ export const initializeReactContainer = () => {
     document.body.replaceChildren(container);
 }
 
-export const render = component => act(() => ReactDOM.createRoot(container)
-    .render(component));
+export const render = component => act(() => {
+    ReactDOM.createRoot(container)
+        .render(component)
+});
+
+export const click = (button) => {
+    act(() => button.click());
+};

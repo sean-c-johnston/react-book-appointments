@@ -1,7 +1,7 @@
-import React, {act} from 'react';
+import React from 'react';
 
 import {Appointment, AppointmentsDayView} from '../src/AppointmentsDayView'
-import {initializeReactContainer, render} from "./reactTestExtensions";
+import {initializeReactContainer, render, click} from "./reactTestExtensions";
 
 describe("Appointment", () => {
     const blankCustomer = {firstName: "", lastName: "", email: ""};
@@ -182,9 +182,9 @@ describe("AppointmentsDayView", () => {
 
     it('renders a different appointment when selected', () => {
         render(<AppointmentsDayView appointments={twoAppointments}/>);
-        const button = document.querySelectorAll("li > button")[1];
 
-        act(() => button.click());
+        const button = document.querySelectorAll("li > button")[1];
+        click(button);
 
         expect(document.body.textContent).toContain("Jordan");
     });
