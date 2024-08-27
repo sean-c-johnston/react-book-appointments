@@ -15,7 +15,7 @@ export const AppointmentsDayView = ({ appointments }) => {
         <ol>
             {appointments.map((appointment, i) => (<li key={appointment.startsAt}>
                     <button type="button" className={i === selectedAppointment ? "toggled" : ""} onClick={() => setSelectedAppointment(i)}>
-                        {appointmentTimeOfDay(appointment.startsAt)}
+                        {appointmentTimeOfDay(appointment.startsAt)} ooo
                     </button>
                 </li>))}
         </ol>
