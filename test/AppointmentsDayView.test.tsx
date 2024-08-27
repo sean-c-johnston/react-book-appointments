@@ -10,56 +10,87 @@ describe("Appointment", () => {
         initializeReactContainer();
     })
 
-    const appointmentComponent = (customer) => {
-        return <Appointment
+    it("renders the customer's first name", () => {
+        const customer = {firstName: "Ashley"};
+        render(<Appointment
             customer={customer}
             startsAt={new Date()}
             service={""}
             stylist={""}
             notes={""}
-        />;
-    };
-
-    it("renders the customer's first name", () => {
-        const customer = {firstName: "Ashley"};
-        render(appointmentComponent(customer));
+        />);
         expect(document.body).toContainText("Ashley");
     });
 
     it("renders a different customer's first name", () => {
         const customer = {firstName: "Jordan"};
-        render(<Appointment customer={customer}/>);
+        render(<Appointment
+            customer={customer}
+            startsAt={new Date()}
+            service={""}
+            stylist={""}
+            notes={""}
+        />);
         expect(document.body).toContainText("Jordan");
     });
 
     it("renders the customer's last name", () => {
         const customer = {lastName: "Smith"};
-        render(<Appointment customer={customer}/>);
+        render(<Appointment
+            customer={customer}
+            startsAt={new Date()}
+            service={""}
+            stylist={""}
+            notes={""}
+        />);
         expect(document.body).toContainText("Smith");
     });
 
     it("renders the customer's last name", () => {
         const customer = {lastName: "Smithy"};
-        render(<Appointment customer={customer}/>);
+        render(<Appointment
+            customer={customer}
+            startsAt={new Date()}
+            service={""}
+            stylist={""}
+            notes={""}
+        />);
         expect(document.body).toContainText("Smithy");
     });
 
     it("renders the customer's phone number", () => {
         const customer = {phoneNumber: "+441234567890"};
-        render(<Appointment customer={customer}/>);
+        render(<Appointment
+            customer={customer}
+            startsAt={new Date()}
+            service={""}
+            stylist={""}
+            notes={""}
+        />);
         expect(document.body).toContainText("+441234567890");
     });
 
     it("renders another customer's phone number", () => {
         const customer = {phoneNumber: "+441234567891"};
-        render(<Appointment customer={customer}/>);
+        render(<Appointment
+            customer={customer}
+            startsAt={new Date()}
+            service={""}
+            stylist={""}
+            notes={""}
+        />);
         expect(document.body).toContainText("+441234567891");
     });
 
     it('renders a header showing the appointment time', () => {
         const today = new Date();
-        render(<Appointment customer={blankCustomer}
-                            startsAt={today.setHours(11, 0)}/>);
+        render(<Appointment
+            customer={blankCustomer}
+            startsAt={today.setHours(11, 0)}
+            service={""}
+            stylist={""}
+            notes={""}
+        />);
 
         const header = element('h1');
         expect(header).not.toBeNull();
@@ -68,8 +99,13 @@ describe("Appointment", () => {
 
     it('renders a header showing another appointment time', () => {
         const today = new Date();
-        render(<Appointment customer={blankCustomer}
-                            startsAt={today.setHours(16, 0)}/>);
+        render(<Appointment
+            customer={blankCustomer}
+            startsAt={today.setHours(16, 0)}
+            service={""}
+            stylist={""}
+            notes={""}
+        />);
 
         const header = element('h1');
         expect(header).not.toBeNull();
@@ -79,7 +115,10 @@ describe("Appointment", () => {
     it('renders the appointment service', () => {
         render(<Appointment
             customer={blankCustomer}
+            startsAt={new Date()}
             service="Cut & Beard"
+            stylist={""}
+            notes={""}
         />);
 
         expect(document.body).toContainText("Cut & Beard");
@@ -88,7 +127,10 @@ describe("Appointment", () => {
     it('renders another appointment service', () => {
         render(<Appointment
             customer={blankCustomer}
+            startsAt={new Date()}
             service="Blow-Dry"
+            stylist={""}
+            notes={""}
         />);
 
         expect(document.body).toContainText("Blow-Dry");
@@ -97,7 +139,10 @@ describe("Appointment", () => {
     it('renders the stylist', () => {
         render(<Appointment
             customer={blankCustomer}
+            startsAt={new Date()}
+            service=""
             stylist="Sean"
+            notes={""}
         />);
 
         expect(document.body).toContainText("Sean");
@@ -106,7 +151,10 @@ describe("Appointment", () => {
     it('renders another stylist', () => {
         render(<Appointment
             customer={blankCustomer}
+            startsAt={new Date()}
+            service=""
             stylist="Joe"
+            notes={""}
         />);
 
         expect(document.body).toContainText("Joe");
@@ -115,6 +163,9 @@ describe("Appointment", () => {
     it('renders the appointment notes', () => {
         render(<Appointment
             customer={blankCustomer}
+            startsAt={new Date()}
+            service=""
+            stylist=""
             notes="note 1"
         />);
 
@@ -124,6 +175,9 @@ describe("Appointment", () => {
     it('renders different appointment notes', () => {
         render(<Appointment
             customer={blankCustomer}
+            startsAt={new Date()}
+            service=""
+            stylist=""
             notes="note 2"
         />);
 

@@ -2,87 +2,6 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./src/sampleData.js":
-/*!***************************!*\
-  !*** ./src/sampleData.js ***!
-  \***************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   sampleAppointments: () => (/* binding */ sampleAppointments)
-/* harmony export */ });
-var today = new Date();
-var at = function at(hours) {
-  return today.setHours(hours, 0);
-};
-var sampleAppointments = [{
-  startsAt: at(9),
-  customer: {
-    firstName: "Charlie",
-    lastName: "Jones",
-    phoneNumber: "+44 0987654321"
-  }
-}, {
-  startsAt: at(10),
-  customer: {
-    firstName: "Frankie",
-    lastName: "Jackson",
-    phoneNumber: "+44 1234567890"
-  }
-}, {
-  startsAt: at(11),
-  customer: {
-    firstName: "Casey",
-    lastName: "Smith",
-    phoneNumber: "+44 5432167890"
-  }
-}, {
-  startsAt: at(12),
-  customer: {
-    firstName: "Ashley",
-    lastName: "Mann",
-    phoneNumber: "+44 1234509876"
-  }
-}, {
-  startsAt: at(13),
-  customer: {
-    firstName: "Jordan",
-    lastName: "Lefield",
-    phoneNumber: "+44 5647382910"
-  }
-}, {
-  startsAt: at(14),
-  customer: {
-    firstName: "Jay",
-    lastName: "Davis",
-    phoneNumber: "+44 0192837465"
-  }
-}, {
-  startsAt: at(15),
-  customer: {
-    firstName: "Alex",
-    lastName: "Pegg",
-    phoneNumber: "+44 1627384950"
-  }
-}, {
-  startsAt: at(16),
-  customer: {
-    firstName: "Jules",
-    lastName: "Frost",
-    phoneNumber: "+44 069584736"
-  }
-}, {
-  startsAt: at(17),
-  customer: {
-    firstName: "Stevie",
-    lastName: "Bean",
-    phoneNumber: "+44 594039033"
-  }
-}];
-
-/***/ }),
-
 /***/ "./node_modules/.pnpm/react-dom@18.3.1_react@18.3.1/node_modules/react-dom/cjs/react-dom.development.js":
 /*!**************************************************************************************************************!*\
   !*** ./node_modules/.pnpm/react-dom@18.3.1_react@18.3.1/node_modules/react-dom/cjs/react-dom.development.js ***!
@@ -33551,6 +33470,96 @@ const appointmentTimeOfDay = (startsAt) => {
 };
 
 
+/***/ }),
+
+/***/ "./src/sampleData.ts":
+/*!***************************!*\
+  !*** ./src/sampleData.ts ***!
+  \***************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   sampleAppointments: () => (/* binding */ sampleAppointments)
+/* harmony export */ });
+const today = new Date();
+const at = (hours) => today.setHours(hours, 0);
+const sampleAppointments = [
+    {
+        startsAt: at(9),
+        customer: {
+            firstName: "Charlie",
+            lastName: "Jones",
+            phoneNumber: "+44 0987654321"
+        }
+    },
+    {
+        startsAt: at(10),
+        customer: {
+            firstName: "Frankie",
+            lastName: "Jackson",
+            phoneNumber: "+44 1234567890"
+        }
+    },
+    {
+        startsAt: at(11),
+        customer: {
+            firstName: "Casey",
+            lastName: "Smith",
+            phoneNumber: "+44 5432167890"
+        }
+    },
+    {
+        startsAt: at(12),
+        customer: {
+            firstName: "Ashley",
+            lastName: "Mann",
+            phoneNumber: "+44 1234509876"
+        }
+    },
+    {
+        startsAt: at(13),
+        customer: {
+            firstName: "Jordan",
+            lastName: "Lefield",
+            phoneNumber: "+44 5647382910"
+        }
+    },
+    {
+        startsAt: at(14),
+        customer: {
+            firstName: "Jay",
+            lastName: "Davis",
+            phoneNumber: "+44 0192837465"
+        }
+    },
+    {
+        startsAt: at(15),
+        customer: {
+            firstName: "Alex",
+            lastName: "Pegg",
+            phoneNumber: "+44 1627384950"
+        }
+    },
+    {
+        startsAt: at(16),
+        customer: {
+            firstName: "Jules",
+            lastName: "Frost",
+            phoneNumber: "+44 069584736"
+        }
+    },
+    {
+        startsAt: at(17),
+        customer: {
+            firstName: "Stevie",
+            lastName: "Bean",
+            phoneNumber: "+44 594039033"
+        }
+    },
+];
+
+
 /***/ })
 
 /******/ 	});
@@ -33634,22 +33643,22 @@ const appointmentTimeOfDay = (startsAt) => {
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
-/*!**********************!*\
-  !*** ./src/index.js ***!
-  \**********************/
+/*!***********************!*\
+  !*** ./src/index.tsx ***!
+  \***********************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/.pnpm/react@18.3.1/node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_dom_client__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom/client */ "./node_modules/.pnpm/react-dom@18.3.1_react@18.3.1/node_modules/react-dom/client.js");
 /* harmony import */ var _AppointmentsDayView__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./AppointmentsDayView */ "./src/AppointmentsDayView.tsx");
-/* harmony import */ var _sampleData__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./sampleData */ "./src/sampleData.js");
+/* harmony import */ var _sampleData__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./sampleData */ "./src/sampleData.ts");
 
 
 
 
-react_dom_client__WEBPACK_IMPORTED_MODULE_1__.createRoot(document.getElementById("root")).render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_AppointmentsDayView__WEBPACK_IMPORTED_MODULE_2__.AppointmentsDayView, {
-  appointments: _sampleData__WEBPACK_IMPORTED_MODULE_3__.sampleAppointments
-}));
+react_dom_client__WEBPACK_IMPORTED_MODULE_1__.createRoot(document.getElementById("root"))
+    .render(react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_AppointmentsDayView__WEBPACK_IMPORTED_MODULE_2__.AppointmentsDayView, { appointments: _sampleData__WEBPACK_IMPORTED_MODULE_3__.sampleAppointments }));
+
 /******/ })()
 ;
 //# sourceMappingURL=bundle.js.map
