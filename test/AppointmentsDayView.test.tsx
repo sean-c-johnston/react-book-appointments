@@ -1,15 +1,7 @@
 import React from 'react';
 
 import {Appointment, AppointmentsDayView} from '../src/AppointmentsDayView'
-import {
-    initializeReactContainer,
-    render,
-    click,
-    element,
-    elements,
-    typesOf,
-    textOf
-} from "./reactTestExtensions";
+import {click, element, elements, initializeReactContainer, render, textOf, typesOf} from "./reactTestExtensions";
 
 describe("Appointment", () => {
     const blankCustomer = {firstName: "", lastName: "", email: ""};
@@ -18,9 +10,19 @@ describe("Appointment", () => {
         initializeReactContainer();
     })
 
+    const appointmentComponent = (customer) => {
+        return <Appointment
+            customer={customer}
+            startsAt={new Date()}
+            service={""}
+            stylist={""}
+            notes={""}
+        />;
+    };
+
     it("renders the customer's first name", () => {
         const customer = {firstName: "Ashley"};
-        render(<Appointment customer={customer}/>);
+        render(appointmentComponent(customer));
         expect(document.body).toContainText("Ashley");
     });
 
