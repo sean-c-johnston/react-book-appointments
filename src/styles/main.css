@@ -26,4 +26,10 @@ div#appointmentsDayView {
         padding: 4px 10px;
         border: 1px black solid;
     }
+
+    button.toggled {
+        background: lightblue;
+        border: steelblue solid 2px;
+        font-weight: bold;
+    }
 }
