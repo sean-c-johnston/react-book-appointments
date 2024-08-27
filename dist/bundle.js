@@ -2,60 +2,6 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./src/AppointmentsDayView.js":
-/*!************************************!*\
-  !*** ./src/AppointmentsDayView.js ***!
-  \************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   Appointment: () => (/* binding */ Appointment),
-/* harmony export */   AppointmentsDayView: () => (/* binding */ AppointmentsDayView)
-/* harmony export */ });
-/* harmony import */ var _babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/slicedToArray */ "./node_modules/.pnpm/@babel+runtime@7.25.0/node_modules/@babel/runtime/helpers/esm/slicedToArray.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/.pnpm/react@18.3.1/node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-
-
-var Appointment = function Appointment(_ref) {
-  var customer = _ref.customer,
-    startsAt = _ref.startsAt,
-    service = _ref.service,
-    stylist = _ref.stylist,
-    notes = _ref.notes;
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("div", null, startsAt !== undefined && startsAt !== null ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("h1", null, appointmentTimeOfDay(startsAt)) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement((react__WEBPACK_IMPORTED_MODULE_1___default().Fragment), null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("p", null, stylist), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("p", null, customer.firstName, " ", customer.lastName), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("p", null, customer.phoneNumber), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("p", null, service), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("p", null, notes));
-};
-var AppointmentsDayView = function AppointmentsDayView(_ref2) {
-  var appointments = _ref2.appointments;
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(0),
-    _useState2 = (0,_babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0__["default"])(_useState, 2),
-    selectedAppointment = _useState2[0],
-    setSelectedAppointment = _useState2[1];
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("div", {
-    id: "appointmentsDayView"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("ol", null, appointments.map(function (appointment, i) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("li", {
-      key: appointment.startsAt
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("button", {
-      type: "button",
-      className: i === selectedAppointment ? "toggled" : "",
-      onClick: function onClick() {
-        return setSelectedAppointment(i);
-      }
-    }, appointmentTimeOfDay(appointment.startsAt)));
-  })), appointments.length === 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("p", null, "There are no appointments today.") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(Appointment, appointments[selectedAppointment]));
-};
-var appointmentTimeOfDay = function appointmentTimeOfDay(startsAt) {
-  var _Date$toTimeString$sp = new Date(startsAt).toTimeString().split(':'),
-    _Date$toTimeString$sp2 = (0,_babel_runtime_helpers_slicedToArray__WEBPACK_IMPORTED_MODULE_0__["default"])(_Date$toTimeString$sp, 2),
-    hh = _Date$toTimeString$sp2[0],
-    mm = _Date$toTimeString$sp2[1];
-  return "".concat(hh, ":").concat(mm);
-};
-
-/***/ }),
-
 /***/ "./src/sampleData.js":
 /*!***************************!*\
   !*** ./src/sampleData.js ***!
@@ -33565,144 +33511,44 @@ if (false) {} else {
 
 /***/ }),
 
-/***/ "./node_modules/.pnpm/@babel+runtime@7.25.0/node_modules/@babel/runtime/helpers/esm/arrayLikeToArray.js":
-/*!**************************************************************************************************************!*\
-  !*** ./node_modules/.pnpm/@babel+runtime@7.25.0/node_modules/@babel/runtime/helpers/esm/arrayLikeToArray.js ***!
-  \**************************************************************************************************************/
-/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+/***/ "./src/AppointmentsDayView.tsx":
+/*!*************************************!*\
+  !*** ./src/AppointmentsDayView.tsx ***!
+  \*************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ _arrayLikeToArray)
+/* harmony export */   Appointment: () => (/* binding */ Appointment),
+/* harmony export */   AppointmentsDayView: () => (/* binding */ AppointmentsDayView)
 /* harmony export */ });
-function _arrayLikeToArray(r, a) {
-  (null == a || a > r.length) && (a = r.length);
-  for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e];
-  return n;
-}
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/.pnpm/react@18.3.1/node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 
-
-/***/ }),
-
-/***/ "./node_modules/.pnpm/@babel+runtime@7.25.0/node_modules/@babel/runtime/helpers/esm/arrayWithHoles.js":
-/*!************************************************************************************************************!*\
-  !*** ./node_modules/.pnpm/@babel+runtime@7.25.0/node_modules/@babel/runtime/helpers/esm/arrayWithHoles.js ***!
-  \************************************************************************************************************/
-/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ _arrayWithHoles)
-/* harmony export */ });
-function _arrayWithHoles(r) {
-  if (Array.isArray(r)) return r;
-}
-
-
-/***/ }),
-
-/***/ "./node_modules/.pnpm/@babel+runtime@7.25.0/node_modules/@babel/runtime/helpers/esm/iterableToArrayLimit.js":
-/*!******************************************************************************************************************!*\
-  !*** ./node_modules/.pnpm/@babel+runtime@7.25.0/node_modules/@babel/runtime/helpers/esm/iterableToArrayLimit.js ***!
-  \******************************************************************************************************************/
-/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ _iterableToArrayLimit)
-/* harmony export */ });
-function _iterableToArrayLimit(r, l) {
-  var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"];
-  if (null != t) {
-    var e,
-      n,
-      i,
-      u,
-      a = [],
-      f = !0,
-      o = !1;
-    try {
-      if (i = (t = t.call(r)).next, 0 === l) {
-        if (Object(t) !== t) return;
-        f = !1;
-      } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0);
-    } catch (r) {
-      o = !0, n = r;
-    } finally {
-      try {
-        if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return;
-      } finally {
-        if (o) throw n;
-      }
-    }
-    return a;
-  }
-}
-
-
-/***/ }),
-
-/***/ "./node_modules/.pnpm/@babel+runtime@7.25.0/node_modules/@babel/runtime/helpers/esm/nonIterableRest.js":
-/*!*************************************************************************************************************!*\
-  !*** ./node_modules/.pnpm/@babel+runtime@7.25.0/node_modules/@babel/runtime/helpers/esm/nonIterableRest.js ***!
-  \*************************************************************************************************************/
-/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ _nonIterableRest)
-/* harmony export */ });
-function _nonIterableRest() {
-  throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
-}
-
-
-/***/ }),
-
-/***/ "./node_modules/.pnpm/@babel+runtime@7.25.0/node_modules/@babel/runtime/helpers/esm/slicedToArray.js":
-/*!***********************************************************************************************************!*\
-  !*** ./node_modules/.pnpm/@babel+runtime@7.25.0/node_modules/@babel/runtime/helpers/esm/slicedToArray.js ***!
-  \***********************************************************************************************************/
-/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ _slicedToArray)
-/* harmony export */ });
-/* harmony import */ var _arrayWithHoles_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./arrayWithHoles.js */ "./node_modules/.pnpm/@babel+runtime@7.25.0/node_modules/@babel/runtime/helpers/esm/arrayWithHoles.js");
-/* harmony import */ var _iterableToArrayLimit_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./iterableToArrayLimit.js */ "./node_modules/.pnpm/@babel+runtime@7.25.0/node_modules/@babel/runtime/helpers/esm/iterableToArrayLimit.js");
-/* harmony import */ var _unsupportedIterableToArray_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./unsupportedIterableToArray.js */ "./node_modules/.pnpm/@babel+runtime@7.25.0/node_modules/@babel/runtime/helpers/esm/unsupportedIterableToArray.js");
-/* harmony import */ var _nonIterableRest_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./nonIterableRest.js */ "./node_modules/.pnpm/@babel+runtime@7.25.0/node_modules/@babel/runtime/helpers/esm/nonIterableRest.js");
-
-
-
-
-function _slicedToArray(r, e) {
-  return (0,_arrayWithHoles_js__WEBPACK_IMPORTED_MODULE_0__["default"])(r) || (0,_iterableToArrayLimit_js__WEBPACK_IMPORTED_MODULE_1__["default"])(r, e) || (0,_unsupportedIterableToArray_js__WEBPACK_IMPORTED_MODULE_2__["default"])(r, e) || (0,_nonIterableRest_js__WEBPACK_IMPORTED_MODULE_3__["default"])();
-}
-
-
-/***/ }),
-
-/***/ "./node_modules/.pnpm/@babel+runtime@7.25.0/node_modules/@babel/runtime/helpers/esm/unsupportedIterableToArray.js":
-/*!************************************************************************************************************************!*\
-  !*** ./node_modules/.pnpm/@babel+runtime@7.25.0/node_modules/@babel/runtime/helpers/esm/unsupportedIterableToArray.js ***!
-  \************************************************************************************************************************/
-/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ _unsupportedIterableToArray)
-/* harmony export */ });
-/* harmony import */ var _arrayLikeToArray_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./arrayLikeToArray.js */ "./node_modules/.pnpm/@babel+runtime@7.25.0/node_modules/@babel/runtime/helpers/esm/arrayLikeToArray.js");
-
-function _unsupportedIterableToArray(r, a) {
-  if (r) {
-    if ("string" == typeof r) return (0,_arrayLikeToArray_js__WEBPACK_IMPORTED_MODULE_0__["default"])(r, a);
-    var t = {}.toString.call(r).slice(8, -1);
-    return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? (0,_arrayLikeToArray_js__WEBPACK_IMPORTED_MODULE_0__["default"])(r, a) : void 0;
-  }
-}
+const Appointment = ({ customer, startsAt, service, stylist, notes }) => react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null,
+    startsAt !== undefined && startsAt !== null ?
+        react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, appointmentTimeOfDay(startsAt)) : react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null),
+    react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, stylist),
+    react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null,
+        customer.firstName,
+        " ",
+        customer.lastName),
+    react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, customer.phoneNumber),
+    react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, service),
+    react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, notes));
+const AppointmentsDayView = ({ appointments }) => {
+    const [selectedAppointment, setSelectedAppointment] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0);
+    return react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", { id: "appointmentsDayView" },
+        react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ol", null, appointments.map((appointment, i) => (react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", { key: appointment.startsAt },
+            react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", { type: "button", className: i === selectedAppointment ? "toggled" : "", onClick: () => setSelectedAppointment(i) }, appointmentTimeOfDay(appointment.startsAt)))))),
+        appointments.length === 0 ?
+            react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "There are no appointments today.") :
+            react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Appointment, Object.assign({}, appointments[selectedAppointment])));
+};
+const appointmentTimeOfDay = (startsAt) => {
+    const [hh, mm] = new Date(startsAt).toTimeString().split(':');
+    return `${hh}:${mm}`;
+};
 
 
 /***/ })
@@ -33795,7 +33641,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/.pnpm/react@18.3.1/node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_dom_client__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom/client */ "./node_modules/.pnpm/react-dom@18.3.1_react@18.3.1/node_modules/react-dom/client.js");
-/* harmony import */ var _AppointmentsDayView__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./AppointmentsDayView */ "./src/AppointmentsDayView.js");
+/* harmony import */ var _AppointmentsDayView__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./AppointmentsDayView */ "./src/AppointmentsDayView.tsx");
 /* harmony import */ var _sampleData__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./sampleData */ "./src/sampleData.js");
 
 

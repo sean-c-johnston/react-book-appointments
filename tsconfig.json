@@ -3,7 +3,9 @@
     "outDir": "./ts-build",
     "allowJs": true,
     "target": "ES6",
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+    "jsx": "react",
+    "esModuleInterop": true
   },
   "include": [
     "./src/**/*"
