@@ -16,3 +16,8 @@ export const render = component => act(() => {
 export const click = (button) => {
     act(() => button.click());
 };
+
+export const element = (selector) => document.querySelector(selector);
+export const elements = (selector) => Array.from(document.querySelectorAll(selector));
+export const typesOf = (elements) => elements.map(e => e.type);
+export const textOf = (elements) => elements.map(e => e.textContent);

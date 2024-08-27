@@ -1,7 +1,15 @@
 import React from 'react';
 
 import {Appointment, AppointmentsDayView} from '../src/AppointmentsDayView'
-import {initializeReactContainer, render, click} from "./reactTestExtensions";
+import {
+    initializeReactContainer,
+    render,
+    click,
+    element,
+    elements,
+    typesOf,
+    textOf
+} from "./reactTestExtensions";
 
 describe("Appointment", () => {
     const blankCustomer = {firstName: "", lastName: "", email: ""};
@@ -48,18 +56,20 @@ describe("Appointment", () => {
 
     it('renders a header showing the appointment time', () => {
         const today = new Date();
-        render(<Appointment customer={blankCustomer} startsAt={today.setHours(11, 0)}/>);
+        render(<Appointment customer={blankCustomer}
+                            startsAt={today.setHours(11, 0)}/>);
 
-        const header = document.body.querySelector('h1');
+        const header = element('h1');
         expect(header).not.toBeNull();
         expect(header).toContainText("11:00");
     });
 
     it('renders a header showing another appointment time', () => {
         const today = new Date();
-        render(<Appointment customer={blankCustomer} startsAt={today.setHours(16, 0)}/>);
+        render(<Appointment customer={blankCustomer}
+                            startsAt={today.setHours(16, 0)}/>);
 
-        const header = document.body.querySelector('h1');
+        const header = element('h1');
         expect(header).not.toBeNull();
         expect(header).toContainText("16:00");
     });
@@ -145,16 +155,15 @@ describe("AppointmentsDayView", () => {
     it('renders an li for each appointment', () => {
         render(<AppointmentsDayView appointments={twoAppointments}/>);
 
-        const listItems = document.querySelectorAll("ol > li");
+        const listItems = elements("ol > li");
         expect(listItems.length).toBe(2);
     });
 
     it('renders the time for each appointment', () => {
         render(<AppointmentsDayView appointments={twoAppointments}/>);
 
-        const listItems = document.querySelectorAll("ol > li");
-        expect(listItems[0]).toContainText("12:00");
-        expect(listItems[1]).toContainText("13:00");
+        let listItems = elements("ol > li");
+        expect(textOf(listItems)).toEqual(["12:00", "13:00"]);
     });
 
     it('displays a message if there are no appointments today', () => {
@@ -174,18 +183,34 @@ describe("AppointmentsDayView", () => {
     it('has a button in each li', () => {
         render(<AppointmentsDayView appointments={twoAppointments}/>);
 
-        const buttons = document.querySelectorAll("li > button");
+        const buttons = elements("li > button");
 
-        expect(buttons.length).toBe(2);
-        expect(buttons[0].type).toBe("button");
+        expect(typesOf(buttons)).toEqual(["button", "button"]);
     });
 
     it('renders a different appointment when selected', () => {
         render(<AppointmentsDayView appointments={twoAppointments}/>);
 
-        const button = document.querySelectorAll("li > button")[1];
-        click(button);
+        const secondButton = elements("li > button")[1];
+        click(secondButton);
 
         expect(document.body).toContainText("Jordan");
+    });
+
+    it("adds toggled class to button when selected", () => {
+        render(<AppointmentsDayView appointments={twoAppointments}/>);
+
+        const button = elements("li > button")[1];
+        click(button);
+
+        expect(button.className).toContain("toggled");
+    });
+
+    it("adds toggled class to button when selected", () => {
+        render(<AppointmentsDayView appointments={twoAppointments}/>);
+
+        const button = elements("li > button")[1];
+
+        expect(button.className).not.toContain("toggled");
     });
 })
