@@ -1,3 +1,8 @@
 node_modules/
 coverage/
-dist/main.js
+
+# Webpack output
+dist/
+
+# Typescript output
+ts-build/
