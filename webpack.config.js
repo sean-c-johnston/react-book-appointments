@@ -1,21 +1,18 @@
-const path = require("path");
-const webpack = require("webpack");
-
-module.exports = {
+export default {
     entry: "./src/index.tsx",
     output: {
         filename: "bundle.js",
     },
     devtool: "source-map",
     resolve: {
-        extensions: [".ts", ".tsx", ".js", ".webpack.js", ".web.js"]
+        extensions: [".ts", ".tsx", ".js", ".webpack.ts", ".web.ts"]
     },
 
     mode: "development",
     module: {
         rules: [
             {
-                test: /\.tsx?$/,
+                test: /\.(ts|tsx)$/,
                 loader: "ts-loader",
             },
             {
