@@ -3,7 +3,8 @@
     "outDir": "./ts-build",
     "allowJs": true,
     "target": "ES6",
-    "moduleResolution": "node",
+    "moduleResolution": "NodeNext",
+    "module": "NodeNext",
     "jsx": "react",
     "esModuleInterop": true
   },
