@@ -12,8 +12,10 @@ Project is built using `pnpm` which may behave differently to `npm`.
 
 ### Building & Running
 
-Running `pnpm build` will package the project with Webpack, and the app
+Running `pnpm build` will package the project with Webpack and output in the `dist/` directory. The app
 can be viewed by opening `dist/index.html` in a browser.
+
+Running `tsc` will compile the project using Typescript and output Javascript files into `ts-build/`.
 
 ### Testing
 
