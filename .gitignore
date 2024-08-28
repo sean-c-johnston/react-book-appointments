@@ -1,5 +1,8 @@
 node_modules/
+
+# Jetbrains
 coverage/
+.idea/
 
 # Webpack output
 dist/
