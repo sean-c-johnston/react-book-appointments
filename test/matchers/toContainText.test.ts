@@ -24,9 +24,14 @@ describe("toContainText matcher", () => {
             .toContain(`expect(element).toContainText("text to match")`);
     });
 
-    it("provides a message if there is a negated match", () => {
+    test("provides a message if there is a negated match", () => {
         const domElement = {textContent: "text to match"};
-        const result = toContainText(domElement, "text to match");
+
+        const fakeContext = {
+            isNot: true,
+            toContainText,
+        }
+        const result = fakeContext.toContainText(domElement, "text to match");
 
         expect(stripTerminalColor(result.message()))
             .toContain(`expect(element).not.toContainText("text to match")`);

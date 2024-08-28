@@ -32,6 +32,7 @@ describe("Appointment", () => {
             stylist={""}
             notes={""}
         />);
+
         expect(document.body).toContainText("Jordan");
     });
 
