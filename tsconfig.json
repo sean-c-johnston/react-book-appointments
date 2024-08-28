@@ -6,12 +6,12 @@
     "moduleResolution": "Bundler",
     "module": "ESNext",
     "jsx": "react",
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "types": ["vitest/globals"]
   },
   "include": [
     "./src/**/*",
     "./types/**/*",
     "./test/**/*",
-    "node_modules/.pnpm/vitest@2.0.5_@types+node@22.5.1_terser@5.31.6/node_modules/vitest/globals.d.ts"
   ]
 }
