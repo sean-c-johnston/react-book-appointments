@@ -5,17 +5,17 @@ import {Appointment, AppointmentsDayView} from '../src/appointmentsDayView/Appoi
 import {click, element, elements, initializeReactContainer, render, textOf, typesOf} from "./reactTestExtensions";
 
 describe("Appointment", () => {
-    const blankCustomer = {firstName: "", lastName: "", email: ""};
+    const blankCustomer = {firstName: "", lastName: "", phoneNumber: ""};
 
     beforeEach(() => {
         initializeReactContainer();
     })
 
     it("renders the customer's first name", () => {
-        const customer = {firstName: "Ashley"};
+        const customer = {firstName: "Ashley", lastName: "", phoneNumber: ""};
         render(<Appointment
             customer={customer}
-            startsAt={new Date()}
+            startsAt={new Date().setHours(0, 0)}
             service={""}
             stylist={""}
             notes={""}
@@ -24,10 +24,10 @@ describe("Appointment", () => {
     });
 
     it("renders a different customer's first name", () => {
-        const customer = {firstName: "Jordan"};
+        const customer = {firstName: "Jordan", lastName: "", phoneNumber: ""};
         render(<Appointment
             customer={customer}
-            startsAt={new Date()}
+            startsAt={new Date().setHours(0, 0)}
             service={""}
             stylist={""}
             notes={""}
@@ -37,10 +37,10 @@ describe("Appointment", () => {
     });
 
     it("renders the customer's last name", () => {
-        const customer = {lastName: "Smith"};
+        const customer = {firstName: "", lastName: "Smith", phoneNumber: ""};
         render(<Appointment
             customer={customer}
-            startsAt={new Date()}
+            startsAt={new Date().setHours(0, 0)}
             service={""}
             stylist={""}
             notes={""}
@@ -49,10 +49,10 @@ describe("Appointment", () => {
     });
 
     it("renders the customer's last name", () => {
-        const customer = {lastName: "Smithy"};
+        const customer = {firstName: "", lastName: "Smithy", phoneNumber: ""};
         render(<Appointment
             customer={customer}
-            startsAt={new Date()}
+            startsAt={new Date().setHours(0, 0)}
             service={""}
             stylist={""}
             notes={""}
@@ -61,10 +61,10 @@ describe("Appointment", () => {
     });
 
     it("renders the customer's phone number", () => {
-        const customer = {phoneNumber: "+441234567890"};
+        const customer = {firstName: "", lastName: "", phoneNumber: "+441234567890"};
         render(<Appointment
             customer={customer}
-            startsAt={new Date()}
+            startsAt={new Date().setHours(0, 0)}
             service={""}
             stylist={""}
             notes={""}
@@ -73,10 +73,10 @@ describe("Appointment", () => {
     });
 
     it("renders another customer's phone number", () => {
-        const customer = {phoneNumber: "+441234567891"};
+        const customer = {firstName: "", lastName: "", phoneNumber: "+441234567891"};
         render(<Appointment
             customer={customer}
-            startsAt={new Date()}
+            startsAt={new Date().setHours(0, 0)}
             service={""}
             stylist={""}
             notes={""}
@@ -117,7 +117,7 @@ describe("Appointment", () => {
     it('renders the appointment service', () => {
         render(<Appointment
             customer={blankCustomer}
-            startsAt={new Date()}
+            startsAt={new Date().setHours(0, 0)}
             service="Cut & Beard"
             stylist={""}
             notes={""}
@@ -129,7 +129,7 @@ describe("Appointment", () => {
     it('renders another appointment service', () => {
         render(<Appointment
             customer={blankCustomer}
-            startsAt={new Date()}
+            startsAt={new Date().setHours(0, 0)}
             service="Blow-Dry"
             stylist={""}
             notes={""}
@@ -141,7 +141,7 @@ describe("Appointment", () => {
     it('renders the stylist', () => {
         render(<Appointment
             customer={blankCustomer}
-            startsAt={new Date()}
+            startsAt={new Date().setHours(0, 0)}
             service=""
             stylist="Sean"
             notes={""}
@@ -153,7 +153,7 @@ describe("Appointment", () => {
     it('renders another stylist', () => {
         render(<Appointment
             customer={blankCustomer}
-            startsAt={new Date()}
+            startsAt={new Date().setHours(0, 0)}
             service=""
             stylist="Joe"
             notes={""}
@@ -165,7 +165,7 @@ describe("Appointment", () => {
     it('renders the appointment notes', () => {
         render(<Appointment
             customer={blankCustomer}
-            startsAt={new Date()}
+            startsAt={new Date().setHours(0, 0)}
             service=""
             stylist=""
             notes="note 1"
@@ -177,7 +177,7 @@ describe("Appointment", () => {
     it('renders different appointment notes', () => {
         render(<Appointment
             customer={blankCustomer}
-            startsAt={new Date()}
+            startsAt={new Date().setHours(0, 0)}
             service=""
             stylist=""
             notes="note 2"
@@ -190,8 +190,26 @@ describe("Appointment", () => {
 describe("AppointmentsDayView", () => {
     const today = new Date();
     const twoAppointments = [{
-        startsAt: today.setHours(12, 0), customer: {firstName: "Ashley"},
-    }, {startsAt: today.setHours(13, 0), customer: {firstName: "Jordan"}}];
+        startsAt: today.setHours(12, 0),
+        customer: {
+            firstName: "Ashley",
+            lastName: '',
+            phoneNumber: ''
+        },
+        service: '',
+        stylist: '',
+        notes: ''
+    }, {
+        startsAt: today.setHours(13, 0),
+        customer: {
+            firstName: "Jordan",
+            lastName: '',
+            phoneNumber: ''
+        },
+        service: '',
+        stylist: '',
+        notes: ''
+    }];
 
     beforeEach(() => {
         initializeReactContainer();
@@ -243,13 +261,13 @@ describe("AppointmentsDayView", () => {
 
         const buttons = elements("li > button");
 
-        expect(typesOf(buttons)).toEqual(["button", "button"]);
+        expect(typesOf(buttons)).toEqual(["BUTTON", "BUTTON"]);
     });
 
     it('renders a different appointment when selected', () => {
         render(<AppointmentsDayView appointments={twoAppointments}/>);
 
-        const secondButton = elements("li > button")[1];
+        const secondButton = elements<HTMLButtonElement>("li > button")[1];
         click(secondButton);
 
         expect(document.body).toContainText("Jordan");
@@ -258,7 +276,7 @@ describe("AppointmentsDayView", () => {
     it("adds toggled class to button when selected", () => {
         render(<AppointmentsDayView appointments={twoAppointments}/>);
 
-        const button = elements("li > button")[1];
+        const button = elements<HTMLButtonElement>("li > button")[1]
         click(button);
 
         expect(button.className).toContain("toggled");
