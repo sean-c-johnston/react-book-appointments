@@ -220,36 +220,35 @@ describe("AppointmentsDayView", () => {
     })
 
     it('renders a div with the correct ID', () => {
-        const component = <AppointmentsDayView appointments={[]}/>;
-        render(component);
-        expect(document.querySelector('div#appointmentsDayView')).not
-            .toBeNull();
+        render(<AppointmentsDayView appointments={[]}/>);
+
+        expect(document.querySelector('div#appointmentsDayView'))
+            .not.toBeNull();
     });
 
     it('renders an ol to display appointments', () => {
-        const component = <AppointmentsDayView appointments={[]}/>;
-        render(component);
+        render(<AppointmentsDayView appointments={[]}/>);
+
         expect(document.querySelector("ol")).not.toBeNull();
     });
 
     it('renders an li for each appointment', () => {
         render(<AppointmentsDayView appointments={twoAppointments}/>);
 
-        const listItems = elements("ol > li");
-        expect(listItems.length).toBe(2);
+        expect(elements("ol > li").length).toBe(2);
     });
 
     it('renders the time for each appointment', () => {
         render(<AppointmentsDayView appointments={twoAppointments}/>);
 
-        let listItems = elements("ol > li");
-        expect(textOf(listItems)).toEqual(["12:00", "13:00"]);
+        expect(textOf(elements("ol > li")))
+            .toEqual(["12:00", "13:00"]);
     });
 
     it('displays a message if there are no appointments today', () => {
         render(<AppointmentsDayView appointments={[]}/>);
-        expect(document.body)
-            .toContainText("There are no appointments today.");
+
+        expect(document.body).toContainText("There are no appointments today.");
     });
 
     it('initially selects the first appointment of the day', () => {
@@ -263,9 +262,8 @@ describe("AppointmentsDayView", () => {
     it('has a button in each li', () => {
         render(<AppointmentsDayView appointments={twoAppointments}/>);
 
-        const buttons = elements("li > button");
-
-        expect(typesOf(buttons)).toEqual(["BUTTON", "BUTTON"]);
+        expect(typesOf(elements("li > button")))
+            .toEqual(["BUTTON", "BUTTON"]);
     });
 
     it('renders a different appointment when selected', () => {
