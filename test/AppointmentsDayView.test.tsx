@@ -9,107 +9,72 @@ describe("Appointment", () => {
         initializeReactContainer();
     })
 
-    it("renders the customer's first name", () => {
-        const customer = customerWith({firstName: "Ashley"});
-        render(<Appointment
-            customer={customer}
-            startsAt={new Date().setHours(0, 0)}
+    function appointmentWith({customer, startsAt}: { customer?: Customer, startsAt?: number }) {
+        return <Appointment
+            customer={customer || blankCustomer()}
+            startsAt={startsAt || new Date().setHours(0, 0)}
             service={""}
             stylist={""}
             notes={""}
-        />);
+        />;
+    }
+
+    it("renders the customer's first name", () => {
+        const ashley = customerWith({firstName: "Ashley"});
+        render(appointmentWith({customer: ashley}));
+
         expect(document.body).toContainText("Ashley");
     });
 
     it("renders a different customer's first name", () => {
-        const customer = customerWith({firstName: "Jordan"});
-        render(<Appointment
-            customer={customer}
-            startsAt={new Date().setHours(0, 0)}
-            service={""}
-            stylist={""}
-            notes={""}
-        />);
+        const jordan = customerWith({firstName: "Jordan"});
+        render(appointmentWith({customer: jordan}));
 
         expect(document.body).toContainText("Jordan");
     });
 
     it("renders the customer's last name", () => {
-        const customer = customerWith({lastName: "Smith"});
-        render(<Appointment
-            customer={customer}
-            startsAt={new Date().setHours(0, 0)}
-            service={""}
-            stylist={""}
-            notes={""}
-        />);
+        const mrSmith = customerWith({lastName: "Smith"});
+        render(appointmentWith({customer: mrSmith}));
+
         expect(document.body).toContainText("Smith");
     });
 
     it("renders the customer's last name", () => {
-        const customer = customerWith({lastName: "Smithy"});
-        render(<Appointment
-            customer={customer}
-            startsAt={new Date().setHours(0, 0)}
-            service={""}
-            stylist={""}
-            notes={""}
-        />);
-        expect(document.body).toContainText("Smithy");
+        const mrJones = customerWith({lastName: "Jones"});
+        render(appointmentWith({customer: mrJones}));
+
+        expect(document.body).toContainText("Jones");
     });
 
     it("renders the customer's phone number", () => {
         const customer = customerWith({phoneNumber: "+441234567890"});
-        render(<Appointment
-            customer={customer}
-            startsAt={new Date().setHours(0, 0)}
-            service={""}
-            stylist={""}
-            notes={""}
-        />);
+        render(appointmentWith({customer: customer}));
+
         expect(document.body).toContainText("+441234567890");
     });
 
     it("renders another customer's phone number", () => {
         const customer = customerWith({phoneNumber: "+441234567891"});
-        render(<Appointment
-            customer={customer}
-            startsAt={new Date().setHours(0, 0)}
-            service={""}
-            stylist={""}
-            notes={""}
-        />);
+        render(appointmentWith({customer: customer}));
+
         expect(document.body).toContainText("+441234567891");
     });
 
     it('renders a header showing the appointment time', () => {
-        const today = new Date();
-        render(<Appointment
-            customer={blankCustomer()}
-            startsAt={today.setHours(11, 0)}
-            service={""}
-            stylist={""}
-            notes={""}
-        />);
+        const elevenAM = new Date().setHours(11, 0);
+        render(appointmentWith({startsAt: elevenAM}));
 
-        const header = element('h1');
-        expect(header).not.toBeNull();
-        expect(header).toContainText("11:00");
+        expect(element('h1')).not.toBeNull();
+        expect(element('h1')).toContainText("11:00");
     });
 
     it('renders a header showing another appointment time', () => {
-        const today = new Date();
-        render(<Appointment
-            customer={blankCustomer()}
-            startsAt={today.setHours(16, 0)}
-            service={""}
-            stylist={""}
-            notes={""}
-        />);
+        const fourPM = new Date().setHours(16, 0);
+        render(appointmentWith({startsAt: fourPM}));
 
-        const header = element('h1');
-        expect(header).not.toBeNull();
-        expect(header).toContainText("16:00");
+        expect(element('h1')).not.toBeNull();
+        expect(element('h1')).toContainText("16:00");
     });
 
     it('renders the appointment service', () => {
