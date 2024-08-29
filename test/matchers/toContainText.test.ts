@@ -45,5 +45,5 @@ describe("toContainText matcher", () => {
             .toContain(`Actual text: "text in the element"`);
     });
 
-    const stripTerminalColor = (text) => text.replace(/\x1B\[\d+m/g, "");
+    const stripTerminalColor = (text: string) => text.replace(/\x1B\[\d+m/g, "");
 });
