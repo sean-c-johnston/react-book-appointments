@@ -5,11 +5,11 @@ export const Appointment = ({customer, startsAt, service, stylist, notes}: Appoi
         {startsAt !== undefined && startsAt !== null ?
             <h1>{appointmentTimeOfDay(startsAt)}</h1> : <></>
         }
-
         <p>{stylist}</p>
+        <p>{service}</p>
+
         <p>{customer.firstName} {customer.lastName}</p>
         <p>{customer.phoneNumber}</p>
-        <p>{service}</p>
         <p>{notes}</p>
     </div>;
 

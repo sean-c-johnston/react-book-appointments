@@ -1,18 +1,16 @@
 import React from 'react';
-import {describe, it, expect, beforeEach} from 'vitest';
+import {beforeEach, describe, expect, it} from 'vitest';
 
 import {Appointment, AppointmentsDayView} from '../src/appointmentsDayView/AppointmentsDayView'
 import {click, element, elements, initializeReactContainer, render, textOf, typesOf} from "./reactTestExtensions";
 
 describe("Appointment", () => {
-    const blankCustomer = {firstName: "", lastName: "", phoneNumber: ""};
-
     beforeEach(() => {
         initializeReactContainer();
     })
 
     it("renders the customer's first name", () => {
-        const customer = {firstName: "Ashley", lastName: "", phoneNumber: ""};
+        const customer = customerWith({firstName: "Ashley"});
         render(<Appointment
             customer={customer}
             startsAt={new Date().setHours(0, 0)}
@@ -24,7 +22,7 @@ describe("Appointment", () => {
     });
 
     it("renders a different customer's first name", () => {
-        const customer = {firstName: "Jordan", lastName: "", phoneNumber: ""};
+        const customer = customerWith({firstName: "Jordan"});
         render(<Appointment
             customer={customer}
             startsAt={new Date().setHours(0, 0)}
@@ -37,7 +35,7 @@ describe("Appointment", () => {
     });
 
     it("renders the customer's last name", () => {
-        const customer = {firstName: "", lastName: "Smith", phoneNumber: ""};
+        const customer = customerWith({lastName: "Smith"});
         render(<Appointment
             customer={customer}
             startsAt={new Date().setHours(0, 0)}
@@ -49,7 +47,7 @@ describe("Appointment", () => {
     });
 
     it("renders the customer's last name", () => {
-        const customer = {firstName: "", lastName: "Smithy", phoneNumber: ""};
+        const customer = customerWith({lastName: "Smithy"});
         render(<Appointment
             customer={customer}
             startsAt={new Date().setHours(0, 0)}
@@ -61,7 +59,7 @@ describe("Appointment", () => {
     });
 
     it("renders the customer's phone number", () => {
-        const customer = {firstName: "", lastName: "", phoneNumber: "+441234567890"};
+        const customer = customerWith({phoneNumber: "+441234567890"});
         render(<Appointment
             customer={customer}
             startsAt={new Date().setHours(0, 0)}
@@ -73,7 +71,7 @@ describe("Appointment", () => {
     });
 
     it("renders another customer's phone number", () => {
-        const customer = {firstName: "", lastName: "", phoneNumber: "+441234567891"};
+        const customer = customerWith({phoneNumber: "+441234567891"});
         render(<Appointment
             customer={customer}
             startsAt={new Date().setHours(0, 0)}
@@ -87,7 +85,7 @@ describe("Appointment", () => {
     it('renders a header showing the appointment time', () => {
         const today = new Date();
         render(<Appointment
-            customer={blankCustomer}
+            customer={blankCustomer()}
             startsAt={today.setHours(11, 0)}
             service={""}
             stylist={""}
@@ -102,7 +100,7 @@ describe("Appointment", () => {
     it('renders a header showing another appointment time', () => {
         const today = new Date();
         render(<Appointment
-            customer={blankCustomer}
+            customer={blankCustomer()}
             startsAt={today.setHours(16, 0)}
             service={""}
             stylist={""}
@@ -116,7 +114,7 @@ describe("Appointment", () => {
 
     it('renders the appointment service', () => {
         render(<Appointment
-            customer={blankCustomer}
+            customer={blankCustomer()}
             startsAt={new Date().setHours(0, 0)}
             service="Cut & Beard"
             stylist={""}
@@ -128,7 +126,7 @@ describe("Appointment", () => {
 
     it('renders another appointment service', () => {
         render(<Appointment
-            customer={blankCustomer}
+            customer={blankCustomer()}
             startsAt={new Date().setHours(0, 0)}
             service="Blow-Dry"
             stylist={""}
@@ -140,7 +138,7 @@ describe("Appointment", () => {
 
     it('renders the stylist', () => {
         render(<Appointment
-            customer={blankCustomer}
+            customer={blankCustomer()}
             startsAt={new Date().setHours(0, 0)}
             service=""
             stylist="Sean"
@@ -152,7 +150,7 @@ describe("Appointment", () => {
 
     it('renders another stylist', () => {
         render(<Appointment
-            customer={blankCustomer}
+            customer={blankCustomer()}
             startsAt={new Date().setHours(0, 0)}
             service=""
             stylist="Joe"
@@ -164,7 +162,7 @@ describe("Appointment", () => {
 
     it('renders the appointment notes', () => {
         render(<Appointment
-            customer={blankCustomer}
+            customer={blankCustomer()}
             startsAt={new Date().setHours(0, 0)}
             service=""
             stylist=""
@@ -176,7 +174,7 @@ describe("Appointment", () => {
 
     it('renders different appointment notes', () => {
         render(<Appointment
-            customer={blankCustomer}
+            customer={blankCustomer()}
             startsAt={new Date().setHours(0, 0)}
             service=""
             stylist=""
@@ -185,6 +183,12 @@ describe("Appointment", () => {
 
         expect(document.body).toContainText("note 2");
     });
+
+    const blankCustomer = () => customerWith({});
+
+    const customerWith = (customer: {}) => {
+        return {firstName: "", lastName: "", phoneNumber: "", ...customer};
+    }
 });
 
 describe("AppointmentsDayView", () => {
@@ -267,8 +271,7 @@ describe("AppointmentsDayView", () => {
     it('renders a different appointment when selected', () => {
         render(<AppointmentsDayView appointments={twoAppointments}/>);
 
-        const secondButton = elements<HTMLButtonElement>("li > button")[1];
-        click(secondButton);
+        click(secondButton());
 
         expect(document.body).toContainText("Jordan");
     });
@@ -276,17 +279,16 @@ describe("AppointmentsDayView", () => {
     it("adds toggled class to button when selected", () => {
         render(<AppointmentsDayView appointments={twoAppointments}/>);
 
-        const button = elements<HTMLButtonElement>("li > button")[1]
-        click(button);
+        click(secondButton());
 
-        expect(button.className).toContain("toggled");
+        expect(secondButton().className).toContain("toggled");
     });
 
     it("adds toggled class to button when selected", () => {
         render(<AppointmentsDayView appointments={twoAppointments}/>);
 
-        const button = elements("li > button")[1];
-
-        expect(button.className).not.toContain("toggled");
+        expect(secondButton().className).not.toContain("toggled");
     });
+
+    const secondButton = () => elements<HTMLButtonElement>("li > button")[1];
 })
