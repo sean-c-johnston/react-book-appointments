@@ -1,7 +1,7 @@
 import React from 'react';
 import {describe, it, expect, beforeEach} from 'vitest';
 
-import {Appointment, AppointmentsDayView} from '../src/AppointmentsDayView'
+import {Appointment, AppointmentsDayView} from '../src/appointmentsDayView/AppointmentsDayView'
 import {click, element, elements, initializeReactContainer, render, textOf, typesOf} from "./reactTestExtensions";
 
 describe("Appointment", () => {
