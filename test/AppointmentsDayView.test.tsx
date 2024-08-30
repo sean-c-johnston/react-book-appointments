@@ -9,61 +9,58 @@ describe("Appointment", () => {
         initializeReactContainer();
     })
 
-    function appointmentWith({customer, startsAt}: { customer?: Customer, startsAt?: number }) {
-        return <Appointment
-            customer={customer || blankCustomer()}
-            startsAt={startsAt || new Date().setHours(0, 0)}
-            service={""}
-            stylist={""}
-            notes={""}
-        />;
-    }
-
     it("renders the customer's first name", () => {
         const ashley = customerWith({firstName: "Ashley"});
-        render(appointmentWith({customer: ashley}));
+        render(<Appointment
+            {...appointmentWith({customer: ashley})} />);
 
         expect(document.body).toContainText("Ashley");
     });
 
     it("renders a different customer's first name", () => {
         const jordan = customerWith({firstName: "Jordan"});
-        render(appointmentWith({customer: jordan}));
+        render(<Appointment
+            {...appointmentWith({customer: jordan})} />);
 
         expect(document.body).toContainText("Jordan");
     });
 
     it("renders the customer's last name", () => {
         const mrSmith = customerWith({lastName: "Smith"});
-        render(appointmentWith({customer: mrSmith}));
+        render(<Appointment
+            {...appointmentWith({customer: mrSmith})} />);
 
         expect(document.body).toContainText("Smith");
     });
 
     it("renders the customer's last name", () => {
         const mrJones = customerWith({lastName: "Jones"});
-        render(appointmentWith({customer: mrJones}));
+        render(<Appointment
+            {...appointmentWith({customer: mrJones})} />);
 
         expect(document.body).toContainText("Jones");
     });
 
     it("renders the customer's phone number", () => {
         const customer = customerWith({phoneNumber: "+441234567890"});
-        render(appointmentWith({customer: customer}));
+        render(<Appointment
+            {...appointmentWith({customer: customer})} />);
 
         expect(document.body).toContainText("+441234567890");
     });
 
     it("renders another customer's phone number", () => {
         const customer = customerWith({phoneNumber: "+441234567891"});
-        render(appointmentWith({customer: customer}));
+        render(<Appointment
+            {...appointmentWith({customer: customer})} />);
 
         expect(document.body).toContainText("+441234567891");
     });
 
     it('renders a header showing the appointment time', () => {
         const elevenAM = new Date().setHours(11, 0);
-        render(appointmentWith({startsAt: elevenAM}));
+        render(<Appointment
+            {...appointmentWith({startsAt: elevenAM})} />);
 
         expect(element('h1')).not.toBeNull();
         expect(element('h1')).toContainText("11:00");
@@ -71,7 +68,8 @@ describe("Appointment", () => {
 
     it('renders a header showing another appointment time', () => {
         const fourPM = new Date().setHours(16, 0);
-        render(appointmentWith({startsAt: fourPM}));
+        render(<Appointment
+            {...appointmentWith({startsAt: fourPM})} />);
 
         expect(element('h1')).not.toBeNull();
         expect(element('h1')).toContainText("16:00");
@@ -79,72 +77,42 @@ describe("Appointment", () => {
 
     it('renders the appointment service', () => {
         render(<Appointment
-            customer={blankCustomer()}
-            startsAt={new Date().setHours(0, 0)}
-            service="Cut & Beard"
-            stylist={""}
-            notes={""}
-        />);
+            {...appointmentWith({service: "Cut & Beard"})} />);
 
         expect(document.body).toContainText("Cut & Beard");
     });
 
     it('renders another appointment service', () => {
         render(<Appointment
-            customer={blankCustomer()}
-            startsAt={new Date().setHours(0, 0)}
-            service="Blow-Dry"
-            stylist={""}
-            notes={""}
-        />);
+            {...appointmentWith({service: "Blow-Dry"})} />);
 
         expect(document.body).toContainText("Blow-Dry");
     });
 
     it('renders the stylist', () => {
         render(<Appointment
-            customer={blankCustomer()}
-            startsAt={new Date().setHours(0, 0)}
-            service=""
-            stylist="Sean"
-            notes={""}
-        />);
+            {...appointmentWith({stylist: "Sean"})} />);
 
         expect(document.body).toContainText("Sean");
     });
 
     it('renders another stylist', () => {
         render(<Appointment
-            customer={blankCustomer()}
-            startsAt={new Date().setHours(0, 0)}
-            service=""
-            stylist="Joe"
-            notes={""}
-        />);
+            {...appointmentWith({stylist: "Joe"})} />);
 
         expect(document.body).toContainText("Joe");
     });
 
     it('renders the appointment notes', () => {
         render(<Appointment
-            customer={blankCustomer()}
-            startsAt={new Date().setHours(0, 0)}
-            service=""
-            stylist=""
-            notes="note 1"
-        />);
+            {...appointmentWith({notes: "note 1"})} />);
 
         expect(document.body).toContainText("note 1");
     });
 
     it('renders different appointment notes', () => {
         render(<Appointment
-            customer={blankCustomer()}
-            startsAt={new Date().setHours(0, 0)}
-            service=""
-            stylist=""
-            notes="note 2"
-        />);
+            {...appointmentWith({notes: "note 2"})} />);
 
         expect(document.body).toContainText("note 2");
     });
@@ -154,6 +122,21 @@ describe("Appointment", () => {
     const customerWith = (customer: {}) => {
         return {firstName: "", lastName: "", phoneNumber: "", ...customer};
     }
+
+    const appointmentWith = (values: {
+        customer?: Customer,
+        startsAt?: number,
+        stylist?: string,
+        service?: string,
+        notes?: string
+    }) => ({
+        customer: blankCustomer(),
+        startsAt: new Date().setHours(0, 0),
+        stylist: "",
+        service: "",
+        notes: "",
+        ...values
+    })
 });
 
 describe("AppointmentsDayView", () => {
