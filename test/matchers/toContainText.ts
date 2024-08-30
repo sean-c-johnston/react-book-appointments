@@ -1,13 +1,17 @@
+import {matcherHint, printExpected} from "jest-matcher-utils";
+
 export function toContainText(received: { textContent: string }, expectedText: string) {
-    const {isNot} = this;
-
-    const message1 = `expect(element)${isNot ? ".not" : ""}.toContainText("${expectedText}")`;
-    const message2 = `Actual text: "${received.textContent}"`;
-
-    const message = [message1, message2].join("\n\n");
+    const sourceHint = matcherHint(
+        "toContainText",
+        "element",
+        printExpected(expectedText),
+        {isNot: this.isNot}
+    );
 
     return {
         pass: received.textContent.includes(expectedText),
-        message: () => message
-    }
+        message: () => sourceHint,
+        expected: expectedText,
+        actual: received.textContent
+    };
 }
