@@ -1,4 +1,4 @@
-import {toContainText} from "./toContainText";
+import {toContainText} from "../toContainText";
 import {describe, it, expect} from 'vitest';
 
 describe("toContainText matcher", () => {
