@@ -1,4 +1,7 @@
 import {describe} from "vitest";
 
-describe("toHaveClass", () => {
+describe.skip("toHaveClass", () => {
+    it('should ', () => {
+        
+    });
 });
