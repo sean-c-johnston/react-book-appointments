@@ -1,3 +1,4 @@
 import {describe} from "vitest";
 
-describe("toHaveClass", () => {});
+describe("toHaveClass", () => {
+});
