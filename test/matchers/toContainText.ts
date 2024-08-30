@@ -1,17 +1,17 @@
 import {matcherHint, printExpected} from "jest-matcher-utils";
 
-export function toContainText(received: { textContent: string }, expectedText: string) {
+export function toContainText(received: { textContent: string }, expected: string) {
     const sourceHint = matcherHint(
         "toContainText",
         "element",
-        printExpected(expectedText),
+        printExpected(expected),
         {isNot: this.isNot}
     );
 
     return {
-        pass: received.textContent.includes(expectedText),
+        pass: received.textContent.includes(expected),
         message: () => sourceHint,
-        expected: expectedText,
+        expected: expected,
         actual: received.textContent
     };
 }

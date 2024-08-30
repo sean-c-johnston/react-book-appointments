@@ -4,6 +4,7 @@ import 'vitest';
 
 interface CustomMatchers<R = unknown> {
     toContainText: (expectedText: string) => R;
+    toHaveClass: (expectedText: string) => R;
 }
 
 declare module 'vitest' {
