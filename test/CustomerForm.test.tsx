@@ -1,6 +1,6 @@
 import React from "react";
 import { CustomerForm } from "../src/CustomerForm";
-import { element, initializeReactContainer, render } from "./helpers/reactTestExtensions";
+import { element, initializeReactContainer, render, click } from "./helpers/reactTestExtensions";
 import { blankCustomer, customerWith } from "./helpers/builders";
 import { expect } from "vitest";
 
@@ -51,6 +51,18 @@ describe("CustomerForm", () => {
         render(<CustomerForm original={blankCustomer()}/>);
         const button = element("input[type=submit]");
         expect(button).not.toBeNull();
+    });
+
+    it("saves existing first name when submitted", () => {
+        render(<CustomerForm
+                original={customerWith({ firstName: "Ashley" })}
+                onSubmit={({ firstName }) => {expect(firstName).toEqual("Ashley");}}
+        />);
+
+        const button = element("input[type=submit]");
+        click(button);
+
+        expect.hasAssertions();
     });
 
     const form = () => element<HTMLFormElement>("form") as HTMLFormElement;

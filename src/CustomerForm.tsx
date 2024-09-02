@@ -1,11 +1,12 @@
 import React from "react";
 
 interface CustomerFormProps {
-    original?: Customer;
+    original?: Customer,
+    onSubmit?: ({ firstName }: { firstName: any }) => void
 }
 
-export const CustomerForm = ({ original }: CustomerFormProps) => (
-        <form>
+export const CustomerForm = ({ original, onSubmit }: CustomerFormProps) => (
+        <form onSubmit={() => onSubmit(original)}>
             <label htmlFor={"firstName"}>First Name</label>
             <input
                     id="firstName"

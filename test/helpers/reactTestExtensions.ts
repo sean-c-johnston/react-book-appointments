@@ -13,7 +13,7 @@ export const render = (component: ReactNode) => act(() => {
         .render(component)
 });
 
-export const click = (button: HTMLButtonElement) => {
+export const click = (button: HTMLElement) => {
     act(() => button.click());
 };
 
