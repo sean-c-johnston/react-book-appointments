@@ -38,9 +38,16 @@ describe("CustomerForm", () => {
         const label = element("label[for=firstName]");
 
         expect(label).not.toBeNull();
+        expect(label).toContainText("First Name");
     });
 
-    const form = () => element<HTMLFormElement>("form");
+    it("gives the firstName input an ID to attach it to the label", () => {
+        render(<CustomerForm original={blankCustomer()}/>);
+
+        expect(formField("firstName").id).toEqual("firstName");
+    });
+
+    const form = () => element<HTMLFormElement>("form") as HTMLFormElement;
 
     const formField = (name: string) => form().elements[name];
 });
