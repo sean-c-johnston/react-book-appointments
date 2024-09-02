@@ -32,6 +32,18 @@ describe("CustomerForm", () => {
         expect(event.defaultPrevented).toBeTruthy();
     });
 
+    const describeField = (fieldName: string, labelText: string, originalValue: string, newValue: string) => {
+        describe(`${labelText} field`, () => {
+            itRendersAsATextBox(fieldName);
+            itIncludesTheExistingValue(fieldName, originalValue);
+            itRendersALabelForTheField(fieldName, labelText);
+            itSubmitsValues(fieldName, originalValue, newValue);
+        });
+    };
+
+    describeField("firstName", "First Name", "Ashley", "Jamie");
+
+
     const itRendersAsATextBox = (fieldName: string) => {
         it("renders as a text box", () => {
             render(<CustomerForm original={blankCustomer()}/>);
@@ -95,13 +107,6 @@ describe("CustomerForm", () => {
             expect.hasAssertions();
         });
     };
-
-    describe("first name field", () => {
-        itRendersAsATextBox("firstName");
-        itIncludesTheExistingValue("firstName", "Ashley");
-        itRendersALabelForTheField("firstName", "First Name");
-        itSubmitsValues("firstName", "Ashley", "Jamie");
-    });
 
     const submitButton = () => element("input[type=submit]");
 
