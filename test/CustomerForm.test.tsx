@@ -47,6 +47,12 @@ describe("CustomerForm", () => {
         expect(formField("firstName").id).toEqual("firstName");
     });
 
+    it("has a submit button", () => {
+        render(<CustomerForm original={blankCustomer()}/>);
+        const button = element("input[type=submit]");
+        expect(button).not.toBeNull();
+    });
+
     const form = () => element<HTMLFormElement>("form") as HTMLFormElement;
 
     const formField = (name: string) => form().elements[name];

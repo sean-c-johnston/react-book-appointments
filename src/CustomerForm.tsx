@@ -14,5 +14,7 @@ export const CustomerForm = ({ original }: CustomerFormProps) => (
                     value={original.firstName}
                     readOnly
             />
+
+            <input type={"submit"} value={"Add"}/>
         </form>
 );
