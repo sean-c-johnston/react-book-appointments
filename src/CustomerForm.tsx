@@ -6,6 +6,7 @@ interface CustomerFormProps {
 
 export const CustomerForm = ({ original }: CustomerFormProps) => (
         <form>
+            <label htmlFor={"firstName"}/>
             <input
                     type="text"
                     name="firstName"
