@@ -45,7 +45,7 @@ describe("toContainText matcher", () => {
 
         const result = toContainText(domElement, "text to match");
 
-        expect(stripTerminalColor(result.actual))
+        expect(stripTerminalColor(result.message()))
             .toContain("text in the element");
     });
 
@@ -54,7 +54,7 @@ describe("toContainText matcher", () => {
 
         const result = toContainText(domElement, "text to match");
 
-        expect(stripTerminalColor(result.expected))
+        expect(stripTerminalColor(result.message()))
             .toContain("text to match");
     });
 
