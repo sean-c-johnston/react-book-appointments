@@ -2,7 +2,8 @@ import React from "react";
 import { beforeEach, describe, expect, it } from "vitest";
 
 import { Appointment, AppointmentsDayView } from "../src/appointmentsDayView/AppointmentsDayView";
-import { click, element, elements, initializeReactContainer, render, textOf, typesOf } from "./reactTestExtensions";
+import {customerWith, appointmentWith} from "./helpers/builders";
+import { click, element, elements, initializeReactContainer, render, textOf, typesOf } from "./helpers/reactTestExtensions";
 
 describe("Appointment", () => {
     beforeEach(() => {
@@ -221,23 +222,4 @@ describe("AppointmentsDayView", () => {
     });
 
     const secondButton = () => elements<HTMLButtonElement>("li > button")[1];
-});
-
-const blankCustomer = () => customerWith({});
-
-const customerWith = (customer: {}) => ({ firstName: "", lastName: "", phoneNumber: "", ...customer });
-
-const appointmentWith = (values: {
-    customer?: Customer,
-    startsAt?: number,
-    stylist?: string,
-    service?: string,
-    notes?: string
-}) => ({
-    customer: blankCustomer(),
-    startsAt: new Date().setHours(0, 0),
-    stylist: "",
-    service: "",
-    notes: "",
-    ...values
 });
