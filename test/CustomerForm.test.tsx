@@ -1,6 +1,6 @@
 import React from "react";
 import { CustomerForm } from "../src/CustomerForm";
-import { element, initializeReactContainer, render, click } from "./helpers/reactTestExtensions";
+import { change, click, element, initializeReactContainer, render, submit } from "./helpers/reactTestExtensions";
 import { blankCustomer, customerWith } from "./helpers/builders";
 import { expect } from "vitest";
 
@@ -49,21 +49,47 @@ describe("CustomerForm", () => {
 
     it("has a submit button", () => {
         render(<CustomerForm original={blankCustomer()}/>);
-        const button = element("input[type=submit]");
-        expect(button).not.toBeNull();
+
+        expect(submitButton()).not.toBeNull();
     });
 
     it("saves existing first name when submitted", () => {
         render(<CustomerForm
                 original={customerWith({ firstName: "Ashley" })}
-                onSubmit={({ firstName }) => {expect(firstName).toEqual("Ashley");}}
-        />);
+                onSubmit={({ firstName }) => {expect(firstName).toEqual("Ashley");}}/>);
 
-        const button = element("input[type=submit]");
-        click(button);
+        click(submitButton());
 
         expect.hasAssertions();
     });
+
+    it("prevents the default action when submitting the form", () => {
+        render(<CustomerForm
+                original={customerWith({ firstName: "Ashley" })}
+                onSubmit={() => {}}/>);
+
+        const event = submit(form());
+
+        expect(event.defaultPrevented).toBeTruthy();
+    });
+
+    it("saves the new fist name when submitted", () => {
+        const func = ({ firstName }) => {
+            console.log(`first name: ${firstName}`);
+            expect(firstName).toEqual("Jamie");
+        };
+
+        render(<CustomerForm
+                original={blankCustomer()}
+                onSubmit={func}/>);
+
+        change(formField("firstName"), "Jamie");
+        click(submitButton());
+
+        expect.hasAssertions();
+    });
+
+    const submitButton = () => element("input[type=submit]");
 
     const form = () => element<HTMLFormElement>("form") as HTMLFormElement;
 

@@ -17,6 +17,12 @@ export const click = (button: HTMLElement) => {
     act(() => button.click());
 };
 
+export const submit = (formElement) => {
+    const event = new Event("submit", {bubbles: true, cancelable: true});
+    act(() => formElement.dispatchEvent(event));
+    return event;
+};
+
 export const element = <T extends HTMLElement>(selector: string) =>
     document.querySelector(selector) as T;
 
@@ -28,3 +34,15 @@ export const typesOf = (elements: Element[]) =>
 
 export const textOf = (elements: Element[]) =>
     elements.map(e => e.textContent);
+
+
+export const originalValueProperty = (reactElement) => {
+    const prototype = Object.getPrototypeOf(reactElement);
+    return Object.getOwnPropertyDescriptor(prototype, "value");
+}
+export const change = (target, value) => {
+    originalValueProperty(target).set.call(target, value);
+    const event = new Event("change", {bubbles: true});
+
+    act(() => target.dispatchEvent(event));
+}
