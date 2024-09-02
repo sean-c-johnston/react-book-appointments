@@ -10,6 +10,7 @@ export const CustomerForm = ({ original }: CustomerFormProps) => (
                     type="text"
                     name="firstName"
                     value={original.firstName}
+                    readOnly
             />
         </form>
 );
