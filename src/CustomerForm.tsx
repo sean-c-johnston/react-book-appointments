@@ -12,10 +12,10 @@ export const CustomerForm = ({ original, onSubmit }: CustomerFormProps) => {
     };
 
     const [customer, setCustomer] = useState(original);
-    const handleFirstNameChange = ({target}) => {
+    const handleFieldChange = ({target}) => {
         setCustomer((customer) => ({
             ...customer,
-            firstName: target.value,
+            [target.name]: target.value,
         }));
     };
 
@@ -26,7 +26,16 @@ export const CustomerForm = ({ original, onSubmit }: CustomerFormProps) => {
                         type="text"
                         name="firstName"
                         value={customer.firstName}
-                        onChange={handleFirstNameChange}
+                        onChange={handleFieldChange}
+                />
+
+                <label htmlFor={"lastName"}>Last Name</label>
+                <input
+                        id="lastName"
+                        type="text"
+                        name="lastName"
+                        value={customer.lastName}
+                        onChange={handleFieldChange}
                 />
 
                 <input type={"submit"} value={"Add"}/>

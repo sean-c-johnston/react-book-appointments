@@ -4,7 +4,6 @@ import { change, click, element, initializeReactContainer, render, submit } from
 import { blankCustomer, customerWith } from "./helpers/builders";
 import { describe, expect } from "vitest";
 
-
 describe("CustomerForm", () => {
     beforeEach(() => {
         initializeReactContainer();
@@ -42,6 +41,7 @@ describe("CustomerForm", () => {
     };
 
     describeField("firstName", "First Name", "Ashley", "Jamie");
+    describeField("lastName", "Last Name", "Smith", "Jones");
 
 
     const itRendersAsATextBox = (fieldName: string) => {
@@ -82,29 +82,27 @@ describe("CustomerForm", () => {
     };
 
     const itSubmitsValues = (fieldName: string, originalValue: string, newValue: string) => {
-
-
         it("saves existing value when submitted", () => {
+            expect.hasAssertions();
+
             render(<CustomerForm
-                    original={customerWith({ firstName: originalValue })}
+                    original={customerWith({ [fieldName]: originalValue })}
                     onSubmit={(props) => {expect(props[fieldName]).toEqual(originalValue);}}/>);
 
             click(submitButton());
-
-            expect.hasAssertions();
         });
 
         it("saves the new value when submitted", () => {
+            expect.hasAssertions();
+
             render(<CustomerForm
                     original={blankCustomer()}
                     onSubmit={(props) => {
-                        expect(props[fieldName]).toEqual("Jamie");
+                        expect(props[fieldName]).toEqual(newValue);
                     }}/>);
 
-            change(formField("firstName"), "Jamie");
+            change(formField(fieldName), newValue);
             click(submitButton());
-
-            expect.hasAssertions();
         });
     };
 
