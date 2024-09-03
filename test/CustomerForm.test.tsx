@@ -42,7 +42,7 @@ describe("CustomerForm", () => {
 
     describeField("firstName", "First Name", "Ashley", "Jamie");
     describeField("lastName", "Last Name", "Smith", "Jones");
-
+    describeField("phoneNumber", "Phone Number", "07111111111", "07222222222");
 
     const itRendersAsATextBox = (fieldName: string) => {
         it("renders as a text box", () => {
